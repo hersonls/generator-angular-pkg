@@ -1,6 +1,6 @@
 # Generator Angular Package 
 
-This generator will make a very easy structure to build you own [Angular](https://angular.io/) packages
+This generator will make a very simple structure to build you own [Angular](https://angular.io/) packages
 for distribution.
 
 ## Installation
