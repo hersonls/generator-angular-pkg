@@ -1,12 +1,12 @@
 {
   "name": "generator-angular-package",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Angular package generator",
-  "homepage": "http://github.com/hersonls/generator-angular-package",
+  "homepage": "https://github.com/hersonls/generator-angular-package",
   "author": {
     "name": "Hersonls",
     "email": "hersonls@gmail.com",
-    "url": "http://github.com/hersonls"
+    "url": "https://github.com/hersonls"
   },
   "files": [
     "generators"
