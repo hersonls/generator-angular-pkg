@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-pkg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular package generator",
   "homepage": "https://github.com/hersonls/generator-angular-pkg",
   "author": {
@@ -51,8 +51,8 @@
     }
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/hersonls/generator-angular-pkg.git"
+    "type": "git",
+    "url": "https://github.com/hersonls/generator-angular-pkg.git"
   },
   "license": "MIT"
 }
