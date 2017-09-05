@@ -9,7 +9,7 @@ First, install [Yeoman](http://yeoman.io) and generator-angular-pkg using [npm](
 
 ```bash
 npm install -g yo
-npm install -g git+https://git@github.com/hersonls/generator-angular-pkg.git
+npm install -g generator-angular-pkg
 ```
 
 Then generate your new package:
