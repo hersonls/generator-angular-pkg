@@ -15,7 +15,7 @@ npm install -g generator-angular-pkg
 Then generate your new package:
 
 ```bash
-yo angular-package
+yo angular-pkg
 ```
 
 ## Development
