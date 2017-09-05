@@ -5,11 +5,11 @@ for distribution.
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-angular-package using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-angular-pkg using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g git+https://git@github.com/hersonls/generator-angular-package.git
+npm install -g git+https://git@github.com/hersonls/generator-angular-pkg.git
 ```
 
 Then generate your new package:

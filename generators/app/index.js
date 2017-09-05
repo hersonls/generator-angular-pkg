@@ -9,7 +9,7 @@ var glob = require("glob")
 module.exports = class extends Generator {
   prompting() {
     this.log(yosay(
-      'Welcome to the great ' + chalk.red('generator-angular-package') + ' generator!'
+      'Welcome to the great ' + chalk.red('generator-angular-pkg') + ' generator!'
     ));
 
     this.gitInfo = {
