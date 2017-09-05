@@ -21,3 +21,13 @@ yo angular-package
 ## License
 
 MIT © [Hersonls](http://github.com/hersonls)
+
+
+[npm-image]: https://badge.fury.io/js/generator-angular-package.svg
+[npm-url]: https://npmjs.org/package/generator-angular-package
+[travis-image]: https://travis-ci.org/hersonls/generator-angular-package.svg?branch=master
+[travis-url]: https://travis-ci.org/hersonls/generator-angular-package
+[daviddm-image]: https://david-dm.org/hersonls/generator-angular-package.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/hersonls/generator-angular-package
+[coveralls-image]: https://coveralls.io/repos/hersonls/generator-angular-package/badge.svg
+[coveralls-url]: https://coveralls.io/r/hersonls/generator-angular-package
