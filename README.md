@@ -53,7 +53,7 @@ $ gulp --tasks
     6. replace-ng-template-styles
     7. copy-package
 
-## Testando package
+## Testing the package
 
 After generating the build with `gulp build` or` gulp dev` you can test the packages locally by making a link through `NPM` or` Yarn`. Both NPM and Yarn have the link and unlink command to make local packages available for local installation.
 
