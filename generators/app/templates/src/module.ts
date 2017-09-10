@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 
-import { <%= props.moduleName %>Component } from './<%= props.name %>.component';
-import { <%= props.moduleName %>Directive } from './<%= props.name %>.directive';
-import { <%= props.moduleName %>Pipe } from './<%= props.name %>.pipe';
-import { <%= props.moduleName %>Service } from './<%= props.name %>.service';
-
+<%_ props.initials.forEach((className) => { _%>
+import { <%= className %> } from './<%= props.name _%>.<%= className.toLowerCase() _%>';
+<%_ }) _%>
 
 @NgModule({
   declarations: [
-    <%= props.moduleName %>Component,
-    <%= props.moduleName %>Directive,
-    <%= props.moduleName %>Pipe
-  ],
-  providers: [
-    <%= props.moduleName %>Service
+    <%_ props.initials.forEach((className) => { _%>
+    <% if (className != 'Service') { %><%= props.moduleName %><%= className %>,<% } %>
+    <%_ }) _%>
   ],
   exports: [
-    <%= props.moduleName %>Component,
-    <%= props.moduleName %>Directive,
-    <%= props.moduleName %>Pipe
-  ]
+    <%_ props.initials.forEach((className) => { _%>
+    <% if (className != 'Service') { %><%= props.moduleName %><%= className %>,<% } %>
+    <%_ }) _%>
+  ],
+  <% if (props.initials.indexOf('Service') !== -1) { %>providers: [<%= props.moduleName %>Service],<% } %>
 })
-export class <%= props.moduleName %>Module { }
+export class <%= props.moduleName _%>Module { }

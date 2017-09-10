@@ -27,13 +27,19 @@ module.exports = class extends Generator {
     {
       type: 'input',
       name: 'scope',
-      message: 'Scope name?'
+      message: 'Scope name? ( Optional )'
     },
     {
       type: 'input',
       name: 'description',
       message: 'Package description?',
       default: 'Angular package description'
+    },
+    {
+      type: 'confirm',
+      name: 'private',
+      message: 'Private package?',
+      default: false
     },
     {
       type: 'input',
@@ -46,6 +52,12 @@ module.exports = class extends Generator {
       name: 'repository',
       message: 'Package repository?',
       default: 'https://github.com/project/repository'
+    },
+    {
+      type: 'checkbox',
+      name: 'initials',
+      message: 'What do you need to get started?',
+      choices: ['Component', 'Directive', 'Pipe', 'Service']
     }];
 
     return this.prompt(prompts).then(props => {
@@ -105,15 +117,21 @@ module.exports = class extends Generator {
       { props: this.props }
     )
 
-    glob(this.templatePath('src/*.ts'), {}, (er, files) => {
-      files.forEach((filePath) => {
-        this.fs.copyTpl(
-          filePath,
-          this.destinationPath('src/' + this.props.name + '.' + path.basename(filePath)),
-          { props: this.props }
-        )
-      });
-    })
+    this.props.initials.forEach((fileName) => {
+      fileName = fileName.toLowerCase();
+
+      this.fs.copyTpl(
+        this.templatePath('src/' + fileName + '.ts'),
+        this.destinationPath(('src/' + this.props.name + '.' + fileName + '.ts')),
+        { props: this.props }
+      )
+    });
+
+    this.fs.copyTpl(
+      this.templatePath('src/module.ts'),
+      this.destinationPath('src/module.ts'),
+      { props: this.props }
+    )
   }
 
   install() {
