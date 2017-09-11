@@ -5,6 +5,9 @@
   "main": "bundles/<%= props.name %>.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
+  <%_ if (props.private == true) { _%>
+  "private": true,
+  <%_ } _%>
   "keywords": [
     "angular",
     "angular2",

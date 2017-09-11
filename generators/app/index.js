@@ -18,6 +18,8 @@ module.exports = class extends Generator {
       github: shelljs.exec('git config github.user', {silent: true}).stdout.replace(/\n/g, ''),
     };
 
+    this.initialsChoices = ['Component', 'Directive', 'Pipe', 'Service'];
+
     const prompts = [{
       type: 'input',
       name: 'name',
@@ -57,7 +59,7 @@ module.exports = class extends Generator {
       type: 'checkbox',
       name: 'initials',
       message: 'What do you need to get started?',
-      choices: ['Component', 'Directive', 'Pipe', 'Service']
+      choices: this.initialsChoices
     }];
 
     return this.prompt(prompts).then(props => {
@@ -69,6 +71,16 @@ module.exports = class extends Generator {
       if (props.scope) {
         props.scope = '@' + props.scope;
       }
+
+      for ( let i = 0; i < this.initialsChoices.length; i++ ) {
+        if (props.initials.indexOf(this.initialsChoices[i]) !== -1 && this.initialsChoices[i] != 'Service') {
+          props.hasDeclarations = true;
+          break;
+        }
+      }
+      this.initialsChoices.forEach((initial) => {
+
+      })
 
       this.props = props;
     });
