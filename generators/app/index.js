@@ -2,7 +2,6 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const shelljs = require('shelljs');
 const path = require('path');
 var glob = require("glob")
 
@@ -11,12 +10,6 @@ module.exports = class extends Generator {
     this.log(yosay(
       'Welcome to the great ' + chalk.red('generator-angular-pkg') + ' generator!'
     ));
-
-    this.gitInfo = {
-      name: shelljs.exec('git config user.name', {silent: true}).stdout.replace(/\n/g, ''),
-      email: shelljs.exec('git config user.email', {silent: true}).stdout.replace(/\n/g, ''),
-      github: shelljs.exec('git config github.user', {silent: true}).stdout.replace(/\n/g, ''),
-    };
 
     this.initialsChoices = ['Component', 'Directive', 'Pipe', 'Service'];
 
@@ -47,7 +40,7 @@ module.exports = class extends Generator {
       type: 'input',
       name: 'author',
       message: 'Author?',
-      default: this.gitInfo.name
+      default: this.user.git.name()
     },
     {
       type: 'input',
