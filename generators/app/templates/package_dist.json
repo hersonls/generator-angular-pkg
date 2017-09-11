@@ -1,6 +1,6 @@
 {
   "name": "<% if (props.scope) { %><%= props.scope %>/<% } %><%= props.name %>",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "<%= props.description %>",
   "main": "bundles/<%= props.name %>.umd.js",
   "module": "index.js",
@@ -25,7 +25,7 @@
     "url": "<%= props.repository %>"
   },
   "peerDependencies": {
-    "@angular/core": "^2.4.0 || ^4.0.0",
-    "rxjs": "^5.0.1"
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.0.0"
   }
 }

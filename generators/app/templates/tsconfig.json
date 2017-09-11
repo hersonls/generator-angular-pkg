@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",
-    "outDir": "./dist/<% if (props.scope) { %><%= props.scope %>/<% } %><%= props.name %>",
+    "outDir": "../dist/<% if (props.scope) { %><%= props.scope %>/<% } %><%= props.name %>",
     "target": "es5",
     "sourceMap": true,
     "module": "es2015",

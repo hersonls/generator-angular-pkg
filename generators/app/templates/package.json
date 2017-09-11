@@ -11,6 +11,7 @@
     "@angular/platform-browser": "^4.3.6",
     "@types/node": "^8.0.26",
     "@types/requirejs": "^2.1.31",
+    "minimatch": "^3.0.0",
     "copyfiles": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",

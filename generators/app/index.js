@@ -78,15 +78,14 @@ module.exports = class extends Generator {
           break;
         }
       }
-      this.initialsChoices.forEach((initial) => {
-
-      })
 
       this.props = props;
     });
   }
 
   writing() {
+    this.destinationRoot('./pkg/');
+
     this.fs.copyTpl(
       this.templatePath('gulpfile.js'),
       this.destinationPath('gulpfile.js'),
@@ -101,7 +100,13 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('gitignore'),
-      this.destinationPath('.gitignore'),
+      this.destinationPath('../.gitignore'),
+      { props: this.props }
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('README.md'),
+      this.destinationPath('../README.md'),
       { props: this.props }
     );
 
@@ -141,7 +146,7 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('src/module.ts'),
-      this.destinationPath('src/module.ts'),
+      this.destinationPath('src/' + this.props.name + '.module.ts'),
       { props: this.props }
     )
   }

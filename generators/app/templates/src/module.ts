@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 <%_ } _%>
 <%_ props.initials.forEach((className) => { _%>
-import { <%= className %> } from './<%= props.name _%>.<%= className.toLowerCase() _%>';
+import { <%= props.moduleName %><%= className %> } from './<%= props.name _%>.<%= className.toLowerCase() _%>';
 <%_ }) _%>
 
 
