@@ -131,14 +131,20 @@ module.exports = class extends Generator {
       fileName = fileName.toLowerCase();
 
       this.fs.copyTpl(
-        this.templatePath('src/' + fileName + '.ts'),
+        this.templatePath('src/' + fileName + '/' + fileName + '.ts'),
         this.destinationPath(('src/' + this.props.name + '.' + fileName + '.ts')),
+        { props: this.props }
+      )
+
+      this.fs.copyTpl(
+        this.templatePath('src/' + fileName + '/' + fileName + '.spec.ts'),
+        this.destinationPath(('src/' + this.props.name + '.' + fileName + '.spec.ts')),
         { props: this.props }
       )
     });
 
     this.fs.copyTpl(
-      this.templatePath('src/module.ts'),
+      this.templatePath('src/module/module.ts'),
       this.destinationPath('src/' + this.props.name + '.module.ts'),
       { props: this.props }
     )
