@@ -1,5 +1,5 @@
-# Node
-node_modules/*
+# Node
+node_modules
 npm-debug.log
 
 # TypeScript
@@ -11,11 +11,11 @@ src/*.d.ts
 .idea
 .project
 .settings
-.idea/*
+.idea
 *.iml
 
 # VS Code
-.vscode/*
+.vscode
 
 # Windows
 Thumbs.db
@@ -30,4 +30,4 @@ Desktop.ini
 **/*.ngsummary.json
 
 # Build files
-dist/*
+dist

@@ -17,6 +17,8 @@ $ gulp --tasks
 ├── replace-ng-template-styles
 ├── minify
 ├── copy-package
+├── dev
+├── build
 └── default
 ```
 

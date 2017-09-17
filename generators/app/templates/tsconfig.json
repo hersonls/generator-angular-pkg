@@ -31,6 +31,7 @@
     "index.ts"
   ],
   "angularCompilerOptions": {
+    "genDir": "../dist/<% if (props.scope) { %><%= props.scope %>/<% } %><%= props.name %>",
     "strictMetadataEmit": true
   }
 }
