@@ -3,7 +3,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const path = require('path');
-var glob = require("glob")
+const glob = require('glob');
 
 module.exports = class extends Generator {
   prompting() {
@@ -56,7 +56,6 @@ module.exports = class extends Generator {
     }];
 
     return this.prompt(prompts).then(props => {
-
       // Generate module name captalized.
       props.moduleName = props.name.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('');
 
@@ -66,7 +65,7 @@ module.exports = class extends Generator {
       }
 
       for ( let i = 0; i < this.initialsChoices.length; i++ ) {
-        if (props.initials.indexOf(this.initialsChoices[i]) !== -1 && this.initialsChoices[i] != 'Service') {
+        if (props.initials.indexOf(this.initialsChoices[i]) !== -1 && this.initialsChoices[i] !== 'Service') {
           props.hasDeclarations = true;
           break;
         }
@@ -92,6 +91,18 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
+      this.templatePath('karma.conf.js'),
+      this.destinationPath('karma.conf.js'),
+      { props: this.props }
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('spec.bundle.js'),
+      this.destinationPath('spec.bundle.js'),
+      { props: this.props }
+    );
+
+    this.fs.copyTpl(
       this.templatePath('gitignore'),
       this.destinationPath('../.gitignore'),
       { props: this.props }
@@ -107,47 +118,47 @@ module.exports = class extends Generator {
       this.templatePath('package_dist.json'),
       this.destinationPath('package_dist.json'),
       { props: this.props }
-    )
+    );
 
     this.fs.copyTpl(
       this.templatePath('rollup.config.js'),
       this.destinationPath('rollup.config.js'),
       { props: this.props }
-    )
+    );
 
     this.fs.copyTpl(
       this.templatePath('tsconfig.json'),
       this.destinationPath('tsconfig.json'),
       { props: this.props }
-    )
+    );
 
     this.fs.copyTpl(
       this.templatePath('index.ts'),
       this.destinationPath('index.ts'),
       { props: this.props }
-    )
+    );
 
-    this.props.initials.forEach((fileName) => {
+    this.props.initials.forEach(fileName => {
       fileName = fileName.toLowerCase();
 
       this.fs.copyTpl(
         this.templatePath('src/' + fileName + '/' + fileName + '.ts'),
         this.destinationPath(('src/' + this.props.name + '.' + fileName + '.ts')),
         { props: this.props }
-      )
+      );
 
       this.fs.copyTpl(
         this.templatePath('src/' + fileName + '/' + fileName + '.spec.ts'),
         this.destinationPath(('src/' + this.props.name + '.' + fileName + '.spec.ts')),
         { props: this.props }
-      )
+      );
     });
 
     this.fs.copyTpl(
       this.templatePath('src/module/module.ts'),
       this.destinationPath('src/' + this.props.name + '.module.ts'),
       { props: this.props }
-    )
+    );
   }
 
   install() {
