@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 <%_ if (props.initials.length) { _%>
 
 <%_ } _%>
@@ -8,6 +9,9 @@ import { <%= props.moduleName %><%= className %> } from './<%= props.name _%>.<%
 
 
 @NgModule({
+  imports: [
+    CommonModule
+  ],
   <%_ if (props.hasDeclarations) { _%>
   declarations: [
   <%_ } _%>

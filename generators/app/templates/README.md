@@ -1,5 +1,7 @@
 # <% if (props.scope) { %><%= props.scope %>/<% } %><%= props.name %> package
 
+<%= props.description %>
+
 ## Development
 
 ### Commands available for package development

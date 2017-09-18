@@ -98,6 +98,12 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
+      this.templatePath('editorconfig'),
+      this.destinationPath('../.editorconfig'),
+      { props: this.props }
+    );
+
+    this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('../README.md'),
       { props: this.props }
