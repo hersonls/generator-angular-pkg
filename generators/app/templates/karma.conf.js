@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 // Karma configuration for Unit testing
 
 module.exports = function (config) {
@@ -27,12 +28,11 @@ module.exports = function (config) {
 		],
 
 		// list of files to exclude
-		exclude: [
-		],
+		exclude: [],
 
 		client:{
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
-    },
+      		clearContext: false // leave Jasmine Spec Runner output visible in browser
+    	},
 
 		// preprocess matching files before serving them to the browser
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -51,11 +51,24 @@ module.exports = function (config) {
 						test: /\.ts/,
 						loaders: ['ts-loader', 'source-map-loader'],
 						exclude: /node_modules/
+					},
+					{
+						test: /src\/.+\.ts$/,
+						exclude: /(node_modules|\.spec\.ts$)/,
+						loader: 'istanbul-instrumenter-loader',
+						enforce: 'post',
+						options: {
+						  esModules: true
+						}
 					}
 				],
-				exprContextCritical: false
 			},
-			devtool: 'inline-source-map',
+			plugins: [
+				new webpack.SourceMapDevToolPlugin({
+					filename: null,
+					test: /\.(ts|js)($|\?)/i
+				})
+			],
 			performance: { hints: false }
 		},
 
@@ -64,14 +77,21 @@ module.exports = function (config) {
 		},
 
 		coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
-      fixWebpackSourcePaths: true
-    },
+			reports: ['html', 'lcovonly', 'text-summary'],
+			dir: './coverage',
+			'report-config': {
+				html: {
+					subdir: 'html'
+				}
+			},
+			fixWebpackSourcePaths: true,
+			skipFilesWithNoCoverage: true,
+		},
 
 		// test results reporter to use
 		// possible values: 'dots', 'progress'
 		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
-		reporters: ['progress', 'kjhtml'],
+		reporters: ['progress', 'kjhtml', 'coverage-istanbul'],
 
 
 		// web server port

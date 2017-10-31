@@ -92,6 +92,15 @@ gulp.task('test', function (done) {
 });
 
 
+gulp.task('test:ci', function (done) {
+  karmaServer.start({
+    configFile: path.join(__dirname, '/karma.conf.js'),
+    singleRun: true,
+    autoWatch: false
+  }, function() { done(); });
+});
+
+
 gulp.task('dev', ['build'], () => {
   return gulp.watch([
     '**/*.ts',

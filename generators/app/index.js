@@ -144,6 +144,12 @@ module.exports = class extends Generator {
       { props: this.props }
     );
 
+    this.fs.copyTpl(
+      this.templatePath('travis.yml'),
+      this.destinationPath('.travis.yml'),
+      { props: this.props }
+    );
+
     this.props.initials.forEach(fileName => {
       fileName = fileName.toLowerCase();
 
