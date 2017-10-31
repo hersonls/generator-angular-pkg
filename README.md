@@ -86,6 +86,18 @@ gulp
 
 This command will generate a distribution folder of the package inside ```dist``` directory.
 
+## Travis and Coverage
+
+to have in your README file the build and coverage status, you just need to configure them.
+
+links:
+`
+[Build Status] https://travis-ci.org/
+[Coverage Status] https://coveralls.io/
+`
+
+This command will generate a distribution folder of the package inside ```dist``` directory.
+
 ## Publishing package
 
 To publish a packge you need go to the package dist path and run ```npm publish``` or ```yarn publish```:
