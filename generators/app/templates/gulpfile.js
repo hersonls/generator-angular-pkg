@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const path = require('path');
-const ngc = require('gulp-ngc');
 const clean = require('gulp-clean');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
@@ -31,8 +30,10 @@ gulp.task('copy-html-css', () => {
 });
 
 
-gulp.task('transpile', () => {
-    return ngc('tsconfig.json');
+gulp.task('transpile', (cb) => {
+  exec('ngc', function (err, stdout, stderr) {
+    cb(err);
+  });
 });
 
 

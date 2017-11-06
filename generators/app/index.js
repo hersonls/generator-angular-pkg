@@ -2,8 +2,6 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const path = require('path');
-const glob = require('glob');
 
 module.exports = class extends Generator {
   prompting() {
@@ -13,47 +11,55 @@ module.exports = class extends Generator {
 
     this.initialsChoices = ['Component', 'Directive', 'Pipe', 'Service'];
 
-    const prompts = [{
-      type: 'input',
-      name: 'name',
-      message: 'Package name?',
-      default: this.appname
-    },
-    {
-      type: 'input',
-      name: 'scope',
-      message: 'Scope name? ( Optional )'
-    },
-    {
-      type: 'input',
-      name: 'description',
-      message: 'Package description?',
-      default: 'Angular package description'
-    },
-    {
-      type: 'confirm',
-      name: 'private',
-      message: 'Private package?',
-      default: false
-    },
-    {
-      type: 'input',
-      name: 'author',
-      message: 'Author?',
-      default: this.user.git.name()
-    },
-    {
-      type: 'input',
-      name: 'repository',
-      message: 'Package repository?',
-      default: 'https://github.com/project/repository'
-    },
-    {
-      type: 'checkbox',
-      name: 'initials',
-      message: 'What do you need to get started?',
-      choices: this.initialsChoices
-    }];
+    const prompts = [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Package name?',
+        default: this.appname
+      },
+      {
+        type: 'input',
+        name: 'scope',
+        message: 'Scope name? ( Optional )'
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'Package description?',
+        default: 'Angular package description'
+      },
+      {
+        type: 'confirm',
+        name: 'private',
+        message: 'Private package?',
+        default: false
+      },
+      {
+        type: 'input',
+        name: 'author',
+        message: 'Author?',
+        default: this.user.git.name()
+      },
+      {
+        type: 'input',
+        name: 'repository',
+        message: 'Package repository?',
+        default: 'https://github.com/project/repository'
+      },
+      {
+        type: 'checkbox',
+        name: 'initials',
+        message: 'What do you need to get started?',
+        choices: this.initialsChoices
+      },
+      {
+        type: 'confirm',
+        name: 'useYarn',
+        message: 'Use yarn instead NPM?',
+        default: false
+      }
+    ];
 
     return this.prompt(prompts).then(props => {
       // Generate module name captalized.
@@ -64,7 +70,7 @@ module.exports = class extends Generator {
         props.scope = '@' + props.scope;
       }
 
-      for ( let i = 0; i < this.initialsChoices.length; i++ ) {
+      for (let i = 0; i < this.initialsChoices.length; i++) {
         if (props.initials.indexOf(this.initialsChoices[i]) !== -1 && this.initialsChoices[i] !== 'Service') {
           props.hasDeclarations = true;
           break;
@@ -81,73 +87,73 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('gulpfile.js'),
       this.destinationPath('gulpfile.js'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('karma.conf.js'),
       this.destinationPath('karma.conf.js'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('spec.bundle.js'),
       this.destinationPath('spec.bundle.js'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('gitignore'),
       this.destinationPath('../.gitignore'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('editorconfig'),
       this.destinationPath('../.editorconfig'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('../README.md'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('package_dist.json'),
       this.destinationPath('package_dist.json'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('rollup.config.js'),
       this.destinationPath('rollup.config.js'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('tsconfig.json'),
       this.destinationPath('tsconfig.json'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('index.ts'),
       this.destinationPath('index.ts'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.fs.copyTpl(
       this.templatePath('travis.yml'),
       this.destinationPath('.travis.yml'),
-      { props: this.props }
+      {props: this.props}
     );
 
     this.props.initials.forEach(fileName => {
@@ -156,24 +162,28 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('src/' + fileName + '/' + fileName + '.ts'),
         this.destinationPath(('src/' + this.props.name + '.' + fileName + '.ts')),
-        { props: this.props }
+        {props: this.props}
       );
 
       this.fs.copyTpl(
         this.templatePath('src/' + fileName + '/' + fileName + '.spec.ts'),
         this.destinationPath(('src/' + this.props.name + '.' + fileName + '.spec.ts')),
-        { props: this.props }
+        {props: this.props}
       );
     });
 
     this.fs.copyTpl(
       this.templatePath('src/module/module.ts'),
       this.destinationPath('src/' + this.props.name + '.module.ts'),
-      { props: this.props }
+      {props: this.props}
     );
   }
 
   install() {
-    this.yarnInstall();
+    if (this.props.useYarn) {
+      this.yarnInstall();
+    } else {
+      this.npmInstall();
+    }
   }
 };
