@@ -31,14 +31,14 @@ gulp.task('copy-html-css', () => {
 
 
 gulp.task('transpile', (cb) => {
-  exec('ngc', function (err, stdout, stderr) {
+  exec('$(<% if (props.useYarn) { %>yarn<% } else { %>npm<% } %> bin)/ngc', function (err, stdout, stderr) {
     cb(err);
   });
 });
 
 
 gulp.task('rollup', (cb) => {
-  exec('rollup -c', function (err, stdout, stderr) {
+  exec('$(<% if (props.useYarn) { %>yarn<% } else { %>npm<% } %> bin)/rollup -c', function (err, stdout, stderr) {
     cb(err);
   });
 });
