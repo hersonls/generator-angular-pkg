@@ -152,7 +152,7 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('travis.yml'),
-      this.destinationPath('.travis.yml'),
+      this.destinationPath('../.travis.yml'),
       {props: this.props}
     );
 
